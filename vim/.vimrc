@@ -20,6 +20,7 @@ set lazyredraw
 " Show matching brackets
 set showmatch
 
+syntax enable
 set background=light
 colorscheme solarized
 "colorscheme desert

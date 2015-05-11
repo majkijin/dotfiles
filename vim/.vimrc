@@ -53,3 +53,5 @@ set cc=80
 :cnoremap <C-B> <Left>
 :cnoremap <Esc>b <S-Left>
 :cnoremap <Esc>f <S-Right>
+
+set omnifunc=syntaxcomplete#Complete

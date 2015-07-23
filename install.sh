@@ -9,6 +9,7 @@ export DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # Bunch of symlinks
 ln -sfv "$DOTFILES_DIR/vim/.vimrc" ~
 ln -sfv "$DOTFILES_DIR/vim/.vim" ~
+ln -sfv "$DOTFILES_DIR/bash/.bash_aliases" ~
 
 if [ "$(uname)" == "Darwin" -a -f "$DOTFILES_DIR/install/osx.sh" ]; then
     source "$DOTFILES_DIR/install/osx.sh"

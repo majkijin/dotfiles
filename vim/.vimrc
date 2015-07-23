@@ -35,7 +35,6 @@ set showmatch
 syntax enable
 set background=light
 colorscheme solarized
-"colorscheme desert
 
 set grepprg=grep\ -nIs\ --exclude-dir=.svn\ --exclude-dir=.git\ --exclude=tags
 
@@ -54,6 +53,13 @@ set expandtab
 set cursorline
 set incsearch
 set cc=80
+set textwidth=79
+set number
+set spell
+
+" Read project specific .vimrc files
+set exrc
+set secure
 
 " Highlight trailing spaces
 :highlight ExtraWhitespace term=reverse ctermfg=15 ctermbg=1 gui=reverse guifg=#dc322f

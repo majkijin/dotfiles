@@ -4,6 +4,7 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sleuth'
 Plug 'mileszs/ack.vim'
+Plug 'derekwyatt/vim-scala'
 call plug#end()
 
 " YCM config

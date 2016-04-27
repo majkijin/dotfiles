@@ -5,11 +5,16 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sleuth'
 Plug 'mileszs/ack.vim'
 Plug 'derekwyatt/vim-scala'
+Plug 'easymotion/vim-easymotion'
 call plug#end()
 
 " YCM config
 " let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
+
+" vim-easymotion config
+let g:EasyMotion_do_shade = 0
+
 
 " Always show the status line
 set laststatus=2

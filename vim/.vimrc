@@ -6,15 +6,47 @@ Plug 'tpope/vim-sleuth'
 Plug 'mileszs/ack.vim'
 Plug 'derekwyatt/vim-scala'
 Plug 'easymotion/vim-easymotion'
+Plug 'yssl/QFEnter'
 call plug#end()
 
 " YCM config
-" let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py']
 
 " vim-easymotion config
 let g:EasyMotion_do_shade = 0
 
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" `s{char}{label}`
+nmap s <Plug>(easymotion-overwin-f)
+" or
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+"nmap s <Plug>(easymotion-overwin-f2)
+
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+" Cscope config for GNU global (gtags)
+"if has("cscope")
+"        set csprg=/usr/local/bin/gtags-cscope
+"        set csto=0
+"        set cst
+"        set nocsverb
+"        " add any database in current directory
+"        if filereadable("GTAGS")
+"            cs add GTAGS
+"        " else add database pointed to by environment
+"        elseif $CSCOPE_DB != ""
+"            cs add $CSCOPE_DB
+"        endif
+"        set csverb
+"endif
 
 " Always show the status line
 set laststatus=2

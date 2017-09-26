@@ -11,6 +11,7 @@ ln -sfv "$DOTFILES_DIR/vim/.vimrc" ~
 ln -sfv "$DOTFILES_DIR/vim/.vim" ~
 ln -sfv "$DOTFILES_DIR/bash/.bash_aliases" ~
 ln -sfv "$DOTFILES_DIR/bash/.dircolors" ~
+ln -sfv "$DOTFILES_DIR/emacs/.spacemacs" ~
 
 # Use GNU stow to install stuff under home directory. This is used for
 # directories like ~/bin/. TODO: Only experimental, not used yet actually!!!

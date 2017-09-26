@@ -8,6 +8,7 @@ Plug 'mileszs/ack.vim'
 Plug 'derekwyatt/vim-scala'
 Plug 'easymotion/vim-easymotion'
 Plug 'yssl/QFEnter'
+Plug 'Vimjas/vim-python-pep8-indent'
 call plug#end()
 
 " Completor config

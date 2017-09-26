@@ -1,6 +1,7 @@
 call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+"Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+Plug 'maralla/completor.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sleuth'
 Plug 'mileszs/ack.vim'
@@ -8,6 +9,14 @@ Plug 'derekwyatt/vim-scala'
 Plug 'easymotion/vim-easymotion'
 Plug 'yssl/QFEnter'
 call plug#end()
+
+" Completor config
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+"let g:completor_auto_trigger = 0
+"inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>"
+let g:completor_python_binary = "/usr/bin/python3"
 
 " YCM config
 let g:ycm_autoclose_preview_window_after_completion = 1

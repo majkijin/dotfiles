@@ -9,6 +9,7 @@ Plug 'derekwyatt/vim-scala'
 Plug 'easymotion/vim-easymotion'
 Plug 'yssl/QFEnter'
 Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'jimmay5469/vim-spacemacs'
 call plug#end()
 
 " Completor config
@@ -121,3 +122,13 @@ set secure
 :cnoremap <Esc>f <S-Right>
 
 set omnifunc=syntaxcomplete#Complete
+
+" Ack customizations
+:nnoremap <Leader>* :Ack! -kw <cword> <CR>
+:nnoremap <Leader>/ :Ack! -k <cword>
+"if executable('ag')
+"  let g:ackprg = 'ag --vimgrep'
+"endif
+
+" Spacemacs keybindings
+let g:spacemacs#leader = '<SPACE>'

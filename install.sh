@@ -12,6 +12,12 @@ ln -sfv "$DOTFILES_DIR/vim/.vim" ~
 ln -sfv "$DOTFILES_DIR/bash/.bash_aliases" ~
 ln -sfv "$DOTFILES_DIR/bash/.dircolors" ~
 
+# Use GNU stow to install stuff under home directory. This is used for
+# directories like ~/bin/. TODO: Only experimental, not used yet actually!!!
+for f in `find . -maxdepth 1 -mindepth 1 -type d -a \! -iname ".*" | cut -f2 -d/`; do
+    echo stow $f;
+done
+
 if [ "$(uname)" == "Darwin" -a -f "$DOTFILES_DIR/install/osx.sh" ]; then
     source "$DOTFILES_DIR/install/osx.sh"
 fi

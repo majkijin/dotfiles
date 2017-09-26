@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+sshopt="-o StrictHostKeyChecking=no -o ConnectTimeout=3"
+
+while true; do
+  # Try the ssh connection
+  out=$(ssh -T $sshopt "$@" 2>&1 exit)
+
+  # Connect if host up
+  [ $? == 0 ] && echo "" && ssh $sshopt "$@" && break
+
+  # Print status
+  [ -n "${out// }" ] && tput el && tput el1 && echo -n "[$(date +%T)] $out"
+  sleep 1
+done

@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+get_user() {
+  user=$(echo "$1" | sed -En 's/^(.+)@.*$/\1/p')
+  echo "${user:-$USER}"
+}
+
+get_host() {
+  echo "${1##*@}"
+}
+
+for i; do
+  host=$(get_host "$i")
+  ip="$(getent hosts ${host} | cut -f1 -d' ' | head -1)"
+  user=$(get_user "$i")
+
+  ssh-keygen -F "${host}" && ssh-keygen -R "${host}"
+  [ -n "${ip}" ] && ssh-keygen -F "${ip}" && ssh-keygen -R "${ip}"
+
+  ssh-copy-id -o StrictHostKeyChecking=no "${user}@${host}"
+  [ -n "${ip}" ] && ssh-copy-id -o StrictHostKeyChecking=no "${user}@${ip}"
+done

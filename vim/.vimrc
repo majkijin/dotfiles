@@ -103,6 +103,7 @@ set cursorline
 set incsearch
 set cc=80
 set textwidth=79
+set breakindent
 set number
 set spell
 

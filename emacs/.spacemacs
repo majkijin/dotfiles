@@ -60,6 +60,7 @@ This function should only modify configuration layer settings."
      gtags
      pandoc
      (c-c++ :variables c-c++-enable-clang-support t)
+     xclipboard
      )
 
    ;; List of additional packages that will be installed without being

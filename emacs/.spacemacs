@@ -51,7 +51,8 @@ This function should only modify configuration layer settings."
      ;; org
      (shell :variables
             shell-default-height 30
-            shell-default-position 'bottom)
+            shell-default-position 'bottom
+            shell-default-shell 'eshell)
      spell-checking
      ;; syntax-checking
      ;; version-control
@@ -61,6 +62,7 @@ This function should only modify configuration layer settings."
      pandoc
      (c-c++ :variables c-c++-enable-clang-support t)
      xclipboard
+     debug
      )
 
    ;; List of additional packages that will be installed without being
@@ -197,11 +199,11 @@ It should only modify the values of Spacemacs settings."
                          spacemacs-dark)
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
-   ;; `all-the-icons', `custom', `vim-powerline' and `vanilla'. The first three
-   ;; are spaceline themes. `vanilla' is default Emacs mode-line. `custom' is a
-   ;; user defined themes, refer to the DOCUMENTATION.org for more info on how
-   ;; to create your own spaceline theme. Value can be a symbol or list with\
-   ;; additional properties.
+   ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
+   ;; first three are spaceline themes. `doom' is the doom-emacs mode-line.
+   ;; `vanilla' is default Emacs mode-line. `custom' is a user defined themes,
+   ;; refer to the DOCUMENTATION.org for more info on how to create your own
+   ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
    dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
 
@@ -275,9 +277,9 @@ It should only modify the values of Spacemacs settings."
    ;; Maximum number of rollback slots to keep in the cache. (default 5)
    dotspacemacs-max-rollback-slots 5
 
-   ;; If non-nil, the paste transient-state is enabled. While enabled, pressing
-   ;; `p' several times cycles through the elements in the `kill-ring'.
-   ;; (default nil)
+   ;; If non-nil, the paste transient-state is enabled. While enabled, after you
+   ;; paste something, pressing `C-j' and `C-k' several times cycles through the
+   ;; elements in the `kill-ring'. (default nil)
    dotspacemacs-enable-paste-transient-state nil
 
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
@@ -466,6 +468,7 @@ before packages are loaded."
   ;; (setq evil-want-C-i-jump t)
   ;; turn fill column indicator and autofill on for all programming modes
   (spacemacs/add-to-hook 'prog-mode-hook '(turn-on-fci-mode auto-fill-mode))
+  (spacemacs/add-to-hook 'markdown-mode-hook '(turn-on-fci-mode auto-fill-mode))
   (setq linum-format "%4d ")
   ;; Do not quit the server with SPC q q
   (evil-leader/set-key "q q" (defun prompt-frame-killer ()
@@ -477,6 +480,14 @@ before packages are loaded."
   ;; Forward and back buttons
   (spacemacs/set-leader-keys "]" 'evil-jump-forward)
   (spacemacs/set-leader-keys "[" 'evil-jump-backward)
+
+  ;; Use .dir-locals when using tramp.
+  (setq enable-remote-dir-locals 't)
+
+  ;; Fix issue with returning from evilified state (normally ESC switches back
+  ;; to efilified state).
+  (add-hook 'evil-evilified-state-exit-hook
+            'evilified-state--restore-normal-state-keymap)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

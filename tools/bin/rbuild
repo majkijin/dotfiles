@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# Copyright by Michal Dubiel <majkijin@gmail.com>.
+# A simple script for doing remote builds.
+
+help() {
+    echo "rbuild <host:path> <command>"
+    echo "    rsync the current directory to a remote <host:path> "
+    echo "    and issue a <command> there. Example:"
+    echo "        rbuild md@host:path/to/ make TARGET=x86"
+}
+
+if [[ $# -lt 2 ]]; then
+    echo "Missing parameters <host> and/or <command>."
+    help
+    exit 1
+fi
+
+if [[ $1 != *":"* ]]; then
+    echo "The <host> parameter must include path, e.g. host:/path/to/"
+    help
+    exit 1
+fi
+
+hostdir="$1"
+host="${1%%:*}"
+dir="${1##*:}"
+shift
+command="$@"
+
+ssh ${host} "mkdir -p ${dir}" &&
+rsync --exclude="/build" --exclude=".git/" -au ./ "${hostdir}" &&
+ssh ${host} \
+    "cd ${dir} && ${command} 2>&1 | sed -ur 's^(/\S*)*${dir}/*^$(pwd)/^'"
